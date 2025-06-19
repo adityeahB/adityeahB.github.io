@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aditya's Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Baskerville&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef0f5;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .header {
+      display: flex;
+      height: 100vh;
+    }
+    .header img {
+      width: 50%;
+      object-fit: cover;
+    }
+    .header .info {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      background: #ffffff;
+    }
+    .header h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 10em;
+      line-height: 1.1;
+      margin: 0;
+      color: rgb(255, 159, 0);
+    }
+    .header .links a {
+      display: inline-block;
+      margin-right: 10px;
+      text-decoration: none;
+      color: rgb(255, 101, 169);
+      font-size: 0.9em;
+    }
+    .section {
+      padding: 40px 0;
+    }
+    .section h2 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 2.6em;
+      text-align: center;
+      color: rgb(101, 122, 255);
+      margin-bottom: 30px;
+    }
+    .culture-grid, .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .writing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .box {
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .box:hover {
+      transform: translateY(-5px);
+    }
+    .writing-grid .box {
+      padding: 40px;
+    }
+    .box img {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .box h3 {
+      font-size: 1.4em;
+      font-family: sans-serif;
+      color: rgb(250, 80, 0);
+      margin-bottom: 10px;
+    }
+    .box p {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.2em;
+      color: rgb(82, 82, 82);
+      text-align: center;
+    }
+    .see-more {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .see-more a {
+      text-decoration: none;
+      color: rgb(255, 101, 169);
+      font-weight: bold;
+    }
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    .collage img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .footer-bar {
+      background-color: rgb(255, 159, 0);
+      width: 100%;
+      height: 60px;
+    }
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgb(249, 73, 0);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="images/boy.png" alt="Profile image"/>
+    <div class="info">
+      <h1>Aditya<br>Banerjee</h1>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/adityanbanerjee/">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <h2>Cultures That Shape Me</h2>
+      <div class="culture-grid">
+        <div class="box">
+          <h3>India</h3>
+          <p>I was born in India, before moving to Brazil with only a few months to my name. My parents left the country as first-generation immigrants.</p>
+        </div>
+        <div class="box">
+          <h3>Brazil</h3>
+          <p>I spent my childhood in Brazil, absorbing the Portuguese language, and a love for Feijoada</p>
+        </div>
+        <div class="box">
+          <h3>USA</h3>
+          <p>I have studied from one American school to another, deeply connected to America, despite never living in it.</p>
+        </div>
+        <div class="box">
+          <h3>Portugal</h3>
+          <p>I moved to Portugal in the latter years of high school, giving me real-life experience and understanding of the EU.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Writing</h2>
+      <div class="writing-grid">
+        <a href="https://ohsobserver.com/overwhelmed/" class="box">
+          <img src="images/overwhelmed.png"/>
+          <h3>Overwhelmed</h3>
+          <p>I live in a small coastal town in Portugal, and you'd think that would mean being far away from the mayhem of the world and the everyday clutter that city life brings...</p>
+        </a>
+        <a href="https://www.nytimes.com/2025/05/15/learning/how-to-be-a-stargazer.html" class="box">
+          <img src="images/star.png"/>
+          <h3>How to Be a Stargazer</h3>
+          <p>“People rush to buy telescopes when they want to start stargazing,” says Kalée Tock, a science instructor with seven years of experience in astronomy...</p>
+        </a>
+        <a href="https://ohsobserver.com/im-still-here-history-resilience-and-the-power-of-storytelling/" class="box">
+          <img src="images/cam.png"/>
+          <h3>I'm Still Here: History, Resilience, and the Power of Storytelling</h3>
+          <p>The seats are packed, a sea of eager faces swaying in anticipation, as flags from various samba schools flutter above the crowd...</p>
+        </a>
+        <a href="https://ohsobserver.com/repair-dont-replace-fighting-obsolescence/" class="box">
+          <img src="images/phone.png"/>
+          <h3>Repair, Don't Replace: Fighting Obsolescence</h3>
+          <p>We've all been there-the recipient of a hand-me-down phone that is practically gasping its last breath...</p>
+        </a>
+      </div>
+      <div class="see-more">
+        <a href="https://ohsobserver.com/staff_name/aditya-banerjee/">See more...</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding: 40px 0;">
+    <h2>Illustration</h2>
+    <div class="collage">
+      <img src="https://source.unsplash.com/200x200/?art1" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art2" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art3" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art4" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art5" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art6" alt="Art"/>
+      <img src="https://source.unsplash.com/200x200/?art7" alt="Art"/>
+    </div>
+    <div class="see-more">
+      <a href="https://example.com">See more...</a>
+    </div>
+  </div>
+
+  <div class="footer-bar"></div>
+
+  <button id="scrollToTopBtn">⬆</button>
+
+  <script>
+    const scrollBtn = document.getElementById("scrollToTopBtn");
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+
+    scrollBtn.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
