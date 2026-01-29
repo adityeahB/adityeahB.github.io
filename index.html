@@ -1,245 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aditya's Profile</title>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Baskerville&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #eef0f5;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .header {
-      display: flex;
-      height: 100vh;
-    }
-    .header img {
-      width: 50%;
-      object-fit: cover;
-    }
-    .header .info {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px;
-      background: #ffffff;
-    }
-    .header h1 {
-      font-family: 'Archivo Black', sans-serif;
-      font-size: 10em;
-      line-height: 1.1;
-      margin: 0;
-      color: rgb(255, 159, 0);
-    }
-    .header .links a {
-      display: inline-block;
-      margin-right: 10px;
-      text-decoration: none;
-      color: rgb(255, 101, 169);
-      font-size: 0.9em;
-    }
-    .section {
-      padding: 40px 0;
-    }
-    .section h2 {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 2.6em;
-      text-align: center;
-      color: rgb(101, 122, 255);
-      margin-bottom: 30px;
-    }
-    .culture-grid, .writing-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .writing-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .box {
-      background: #ffffff;
-      border-radius: 6px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    .box:hover {
-      transform: translateY(-5px);
-    }
-    .writing-grid .box {
-      padding: 40px;
-    }
-    .box img {
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .box h3 {
-      font-size: 1.4em;
-      font-family: sans-serif;
-      color: rgb(250, 80, 0);
-      margin-bottom: 10px;
-    }
-    .box p {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 1.2em;
-      color: rgb(82, 82, 82);
-      text-align: center;
-    }
-    .see-more {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .see-more a {
-      text-decoration: none;
-      color: rgb(255, 101, 169);
-      font-weight: bold;
-    }
-    .collage {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-    }
-    .collage img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .footer-bar {
-      background-color: rgb(255, 159, 0);
-      width: 100%;
-      height: 60px;
-    }
-    #scrollToTopBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: rgb(249, 73, 0);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <img src="images/boy.png" alt="Profile image"/>
-    <div class="info">
-      <h1>Aditya<br>Banerjee</h1>
-      <div class="links">
-        <a href="https://www.linkedin.com/in/adityanbanerjee/">LinkedIn</a>
-        <a href="#">Instagram</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <h2>Cultures That Shape Me</h2>
-      <div class="culture-grid">
-        <div class="box">
-          <h3>India</h3>
-          <p>I was born in India, before moving to Brazil with only a few months to my name. My parents left the country as first-generation immigrants.</p>
-        </div>
-        <div class="box">
-          <h3>Brazil</h3>
-          <p>I spent my childhood in Brazil, absorbing the Portuguese language, and a love for Feijoada</p>
-        </div>
-        <div class="box">
-          <h3>USA</h3>
-          <p>I have studied from one American school to another, deeply connected to America, despite never living in it.</p>
-        </div>
-        <div class="box">
-          <h3>Portugal</h3>
-          <p>I moved to Portugal in the latter years of high school, giving me real-life experience and understanding of the EU.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Writing</h2>
-      <div class="writing-grid">
-        <a href="https://ohsobserver.com/overwhelmed/" class="box">
-          <img src="images/overwhelmed.png"/>
-          <h3>Overwhelmed</h3>
-          <p>I live in a small coastal town in Portugal, and you'd think that would mean being far away from the mayhem of the world and the everyday clutter that city life brings...</p>
-        </a>
-        <a href="https://www.nytimes.com/2025/05/15/learning/how-to-be-a-stargazer.html" class="box">
-          <img src="images/star.png"/>
-          <h3>How to Be a Stargazer</h3>
-          <p>“People rush to buy telescopes when they want to start stargazing,” says Kalée Tock, a science instructor with seven years of experience in astronomy...</p>
-        </a>
-        <a href="https://ohsobserver.com/im-still-here-history-resilience-and-the-power-of-storytelling/" class="box">
-          <img src="images/cam.png"/>
-          <h3>I'm Still Here: History, Resilience, and the Power of Storytelling</h3>
-          <p>The seats are packed, a sea of eager faces swaying in anticipation, as flags from various samba schools flutter above the crowd...</p>
-        </a>
-        <a href="https://ohsobserver.com/repair-dont-replace-fighting-obsolescence/" class="box">
-          <img src="images/phone.png"/>
-          <h3>Repair, Don't Replace: Fighting Obsolescence</h3>
-          <p>We've all been there-the recipient of a hand-me-down phone that is practically gasping its last breath...</p>
-        </a>
-      </div>
-      <div class="see-more">
-        <a href="https://ohsobserver.com/staff_name/aditya-banerjee/">See more...</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" style="padding: 40px 0;">
-    <h2>Illustration</h2>
-    <div class="collage">
-      <img src="https://source.unsplash.com/200x200/?art1" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art2" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art3" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art4" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art5" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art6" alt="Art"/>
-      <img src="https://source.unsplash.com/200x200/?art7" alt="Art"/>
-    </div>
-    <div class="see-more">
-      <a href="https://example.com">See more...</a>
-    </div>
-  </div>
-
-  <div class="footer-bar"></div>
-
-  <button id="scrollToTopBtn">⬆</button>
-
-  <script>
-    const scrollBtn = document.getElementById("scrollToTopBtn");
-
-    window.onscroll = function() {
-      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollBtn.style.display = "block";
-      } else {
-        scrollBtn.style.display = "none";
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aditya Neil Banerjee | Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              espresso: '#241f1c',
+              sand: '#f5f1ed',
+              accent: '#d4a373',
+              accentDark: '#bc6c25',
+              neon: '#ccff00',
+            },
+            fontFamily: {
+              serif: ['Playfair Display', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Space Mono', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body { transition: background-color 0.5s ease, color 0.5s ease; scroll-behavior: smooth; }
+      @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      .animate-fade-in { animation: fade-in 0.8s ease-out forwards; }
+      
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        line-height: 1.1;
       }
-    };
+    </style>
+</head>
+<body class="bg-sand text-espresso dark:bg-espresso dark:text-sand font-sans overflow-x-hidden">
+    <div id="root"></div>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    scrollBtn.addEventListener("click", function() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
+        const Menu = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        );
+
+        const X = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        );
+
+        const Sun = ({ size = 20 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        );
+
+        const Moon = ({ size = 20 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        );
+
+        const ExternalLink = ({ size = 18 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+        );
+
+        const App = () => {
+            const [isDark, setIsDark] = useState(false);
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [modalContent, setModalContent] = useState(null);
+            const [showCookies, setShowCookies] = useState(true);
+
+            useEffect(() => {
+                if (isDark) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }, [isDark]);
+
+            const toggleTheme = () => setIsDark(!isDark);
+            const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+            const nautilusImage = "https://images.unsplash.com/photo-1544322497-293672922619?q=80&w=2000&auto=format&fit=crop";
+
+            return (
+                <div className="min-h-screen transition-colors duration-500 bg-sand dark:bg-espresso text-espresso dark:text-sand">
+                    
+                    {/* Navigation Toggle */}
+                    <button 
+                        onClick={toggleMenu} 
+                        className="fixed top-8 right-8 z-[70] w-12 h-12 rounded-full flex items-center justify-center bg-espresso/5 dark:bg-white/5 backdrop-blur-md border border-accent/20 shadow-lg text-current hover:scale-110 transition-transform"
+                    >
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+
+                    {/* Navigation Menu Overlay */}
+                    <nav className={`fixed inset-0 z-[65] flex flex-col items-center justify-center bg-sand dark:bg-espresso transition-transform duration-700 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+                        <div className="flex flex-col items-center gap-8">
+                            {['Home', 'Origins', 'Author', 'Writing', 'Notebook', 'Media'].map((label) => (
+                                <a 
+                                    key={label} 
+                                    href={`#${label.toLowerCase() === 'media' ? 'interests' : label.toLowerCase()}`} 
+                                    onClick={() => setIsMenuOpen(false)} 
+                                    className="font-serif text-5xl md:text-7xl hover:text-accent hover:italic transition-all"
+                                >
+                                    {label}
+                                </a>
+                            ))}
+                        </div>
+                    </nav>
+
+                    {/* Dark Mode Toggle */}
+                    <button 
+                        onClick={toggleTheme} 
+                        className="fixed top-8 left-8 z-[60] w-11 h-11 rounded-full flex items-center justify-center bg-sand dark:bg-espresso border border-accent/20 shadow-xl text-espresso dark:text-sand hover:scale-110 transition-transform"
+                    >
+                        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
+
+                    {/* HERO SECTION */}
+                    <header id="home" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-sand dark:bg-espresso px-6">
+                        {/* Nautilus Background - Centered CSS implementation */}
+                        <div 
+                            className="absolute inset-0 z-0 opacity-40 dark:opacity-20 pointer-events-none transition-opacity duration-500"
+                            style={{
+                                backgroundImage: `url('${nautilusImage}')`,
+                                backgroundSize: 'contain',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                filter: 'grayscale(100%)'
+                            }}
+                        />
+
+                        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
+                            <h1 className="hero-title font-serif font-black tracking-tighter mb-12 uppercase animate-fade-in text-center">
+                                Creative instincts <span className="text-accent italic opacity-80">//</span> STEM logic <span className="text-accent italic opacity-80">//</span> Global firmware
+                            </h1>
+                            <div className="flex flex-col items-center">
+                                <div className="h-px w-32 bg-accent/30 mb-8" />
+                                <h2 className="font-sans text-2xl md:text-4xl font-light uppercase tracking-[0.4em] text-accent mb-4">Aditya Neil Banerjee</h2>
+                                <p className="font-mono text-xs md:text-sm uppercase tracking-[0.2em] opacity-40">Class of 2027 // v4.0 // Adaptive</p>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* GLOBAL ORIGINS SECTION - INDIA, BRAZIL, USA, PORTUGAL */}
+                    <section id="origins" className="py-24 border-b border-accent/10 px-6 relative z-10 bg-sand dark:bg-espresso">
+                        <div className="max-w-7xl mx-auto mb-16 text-center">
+                            <h2 className="font-serif text-5xl md:text-7xl mb-4 font-black italic tracking-tight">Global Origins</h2>
+                            <p className="font-mono text-xs opacity-50 uppercase tracking-[0.3em]">The Firmware of Identity</p>
+                        </div>
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {[
+                                { title: 'India', label: 'Legacy', image: 'https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&q=80&w=1000', body: 'Heritage is an internal compass.' },
+                                { title: 'Brazil', label: 'Rhythm', image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1000', body: 'Brazil taught me about the conversation between light and concrete.' },
+                                { title: 'USA', label: 'Intellect', image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1000&auto=format&fit=crop', body: 'The United States is my intellectual training ground.' },
+                                { title: 'Portugal', label: 'Current', image: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1000&auto=format&fit=crop', body: 'Portugal is the stage for my adulthood.' }
+                            ].map((region) => (
+                                <div key={region.title} onClick={() => setModalContent(region)} className="group cursor-pointer">
+                                    <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-xl transition-all duration-500 group-hover:-translate-y-4 group-hover:shadow-2xl">
+                                        <img src={region.image} alt={region.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
+                                        <div className="absolute bottom-8 left-8 right-8">
+                                            <span className="block font-mono text-[10px] text-accent tracking-[0.2em] mb-2 uppercase font-black">{region.label}</span>
+                                            <h3 className="font-serif text-2xl text-sand italic font-bold leading-none">{region.title}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* BOOK PUBLISHED SECTION */}
+                    <section id="author" className="py-24 px-6 md:px-12 relative z-10 bg-sand dark:bg-espresso">
+                        <div onClick={() => window.open('https://www.amazon.com/Weight-Cloud-Other-Poems-ebook/dp/B0FXGLB1W7/', '_blank')} className="max-w-6xl mx-auto bg-accent text-espresso rounded-[3rem] p-10 md:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center cursor-pointer hover:bg-accent/90 transition-all group">
+                            <div>
+                                <span className="inline-block bg-espresso text-sand px-6 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] mb-8 uppercase">Published Collection</span>
+                                <h2 className="font-serif text-5xl md:text-7xl font-black leading-none mb-8 group-hover:italic transition-all uppercase">The Weight of a Cloud</h2>
+                                <p className="text-xl md:text-2xl font-medium leading-relaxed opacity-80 mb-10">My debut poetry collection. An exploration of home, identity, and the ephemeral moments in between.</p>
+                                <div className="flex items-center gap-3 font-bold border-b-2 border-espresso/20 pb-2 w-fit group-hover:gap-5 transition-all">
+                                    <span>AVAILABLE ON AMAZON</span>
+                                    <ExternalLink size={18} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">
+                                <img src="https://m.media-amazon.com/images/I/81LFuBnVh6L._SL1500_.jpg" alt="The Weight of a Cloud" className="w-full max-w-sm rounded-lg shadow-2xl transition-transform group-hover:scale-105" />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* WRITING SECTION */}
+                    <section id="writing" className="py-24 px-6">
+                        <div className="max-w-7xl mx-auto text-center">
+                            <h2 className="font-serif text-5xl md:text-6xl mb-16">Publications</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+                                {[
+                                    { outlet: 'NEW YORK TIMES', title: 'How to be a Stargazer', image: 'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=1000', href: 'https://www.nytimes.com/2025/05/15/learning/how-to-be-a-stargazer.html', ny: true },
+                                    { outlet: 'Stanford OHS Observer', title: 'Overwhelmed', image: 'https://ohsobserver.com/wp-content/uploads/2025/05/overwhelmed.png', href: 'https://ohsobserver.com/overwhelmed/' },
+                                    { outlet: 'Stanford OHS Observer', title: 'The Rent Question', image: 'https://ohsobserver.com/wp-content/uploads/2026/01/rent.png', href: 'https://ohsobserver.com/rent-control-will-it-work/' }
+                                ].map((work) => (
+                                    <div key={work.title} onClick={() => window.open(work.href, '_blank')} className="bg-sand/5 dark:bg-white/5 border border-accent/10 rounded-[2.5rem] p-6 cursor-pointer hover:-translate-y-4 transition-all group shadow-lg">
+                                        {work.ny && <div className="inline-block bg-neon text-espresso text-[10px] font-black px-4 py-1 rounded-sm -rotate-2 mb-6 group-hover:rotate-0 transition-transform">NEW YORK TIMES</div>}
+                                        <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-8">
+                                            <img src={work.image} alt={work.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                                        </div>
+                                        <span className="block font-mono text-[10px] uppercase tracking-widest text-accent mb-2 font-bold">{work.outlet}</span>
+                                        <h3 className="font-serif text-2xl group-hover:text-accent transition-colors">{work.title}</h3>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* UNSCRIPTED LAB (NOTEBOOK) SECTION */}
+                    <section id="notebook" className="py-24 px-6 bg-sand/5 dark:bg-white/5">
+                        <div className="max-w-4xl mx-auto space-y-24">
+                            <div className="text-center mb-16">
+                                <h2 className="font-serif text-5xl md:text-6xl mb-4">The Unscripted Lab</h2>
+                                <p className="font-mono text-xs opacity-50 uppercase tracking-widest">Reflections & Notes</p>
+                            </div>
+                            {[
+                                { title: 'The AI-Leisure Trap', text: "In 2026, AI was meant to save us time. Instead, it's raised the ceiling for production. We are in a race to the bottom of the attention span." },
+                                { title: 'Post-Global Identity', text: "Globalization failed to provide a sense of belonging. We are desperate to define exactly which border we stand behind." }
+                            ].map((m) => (
+                                <div key={m.title} className="relative pl-12 border-l-4 border-neon">
+                                    <h3 className="font-serif text-3xl italic text-accent mb-4">{m.title}</h3>
+                                    <p className="font-mono text-lg opacity-80">{m.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* SOUND & VISION SECTION */}
+                    <section id="interests" className="py-24 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <h2 className="font-serif text-5xl md:text-6xl mb-4">Sound & Vision</h2>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                {[
+                                    { title: 'Soundscapes', label: 'Spotify Curation', image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1000', href: '#' },
+                                    { title: 'Photography Archive', label: 'NGA Archive', image: 'https://images.unsplash.com/photo-1452723312111-3a7d0db0e024?q=80&w=1000', href: 'https://www.nga.gov' }
+                                ].map((item) => (
+                                    <div key={item.title} onClick={() => window.open(item.href, '_blank')} className="relative aspect-video rounded-[3rem] overflow-hidden group cursor-pointer shadow-xl">
+                                        <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                        <div className="absolute inset-0 bg-espresso/40 group-hover:bg-espresso/20 transition-colors" />
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center text-sand">
+                                            <span className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2 opacity-80">{item.label}</span>
+                                            <h3 className="font-serif text-4xl italic">{item.title}</h3>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* FOOTER */}
+                    <footer className="relative bg-accent text-espresso py-24 px-6 md:px-12 overflow-hidden">
+                        <div className="absolute bottom-[-10%] left-[-5%] text-[15rem] font-black opacity-[0.03] select-none pointer-events-none">2027</div>
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16 relative z-10">
+                            <div>
+                                <h2 className="font-serif text-5xl md:text-6xl font-black leading-[0.9] tracking-tighter mb-8 italic">ADITYA<br />NEIL<br />BANERJEE</h2>
+                                <p className="font-bold text-lg">Class of 2027 // v4.0</p>
+                            </div>
+                            <div>
+                                <h3 className="font-mono text-sm uppercase tracking-widest mb-6 opacity-60">Contact</h3>
+                                <a href="mailto:me@aditya.pt" className="inline-block border-2 border-espresso px-8 py-3 rounded-full font-black hover:bg-espresso hover:text-sand transition-all">me@aditya.pt</a>
+                            </div>
+                            <div className="p-8 bg-espresso/5 rounded-3xl border border-espresso/10">
+                                <h4 className="font-mono text-[10px] font-black uppercase mb-4">LGPD / GDPR COMPLIANT</h4>
+                                <p className="font-mono text-[10px] opacity-70">No cookies, no tracking. All rights reserved © 2008-2027.</p>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* COOKIES BANNER */}
+                    {showCookies && (
+                        <div className="fixed bottom-8 right-8 z-[100] bg-espresso text-sand px-6 py-4 rounded-full flex items-center gap-6 shadow-2xl border border-white/10 animate-fade-in">
+                            <div className="flex items-center gap-2">
+                                <span className="text-lg">🛡️</span>
+                                <p className="font-mono text-[10px] tracking-tight uppercase font-bold">Zero cookies. Privacy first.</p>
+                            </div>
+                            <button 
+                                onClick={() => setShowCookies(false)}
+                                className="bg-neon text-espresso px-4 py-1.5 rounded-full font-black text-[10px] uppercase hover:scale-105 transition-transform"
+                            >
+                                Understood
+                            </button>
+                        </div>
+                    )}
+
+                    {/* MODAL OVERLAY */}
+                    {modalContent && (
+                        <div className="fixed inset-0 z-[100] bg-espresso/95 backdrop-blur-xl overflow-y-auto px-6 py-24 animate-fade-in flex items-center justify-center">
+                            <button 
+                                onClick={() => setModalContent(null)} 
+                                className="fixed top-8 right-8 text-accent flex items-center gap-2 font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform"
+                            >
+                                <X size={20} /><span>Close</span>
+                            </button>
+                            <div className="max-w-3xl mx-auto text-sand">
+                                <h2 className="font-serif text-6xl italic text-accent mb-12">{modalContent.title}</h2>
+                                <p className="text-xl md:text-3xl font-light leading-relaxed">{modalContent.body}</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
