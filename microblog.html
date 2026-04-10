@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microthots — Aditya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f7;
+            --text: #1a1a1a;
+            --muted: #888;
+            --accent: #c0392b;
+            --accent-hover: #a03024;
+            --border: #e5e2df;
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Inter', sans-serif;
+            --max-width: 680px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-serif);
+            line-height: 1.75;
+            padding: 4rem 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            max-width: var(--max-width);
+            margin: 0 auto 4rem auto;
+            text-align: left;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        header a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        header a:hover {
+            border-color: var(--text);
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Feed Styles */
+        .post-item {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-date {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .post-title {
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .post-title a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .post-title a:hover {
+            color: var(--accent);
+        }
+
+        .post-body {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-body em { font-style: italic; }
+        .post-body strong { font-weight: 600; }
+
+        .post-actions {
+            display: flex;
+            gap: 1.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+            padding: 0.25rem 0;
+        }
+
+        .action-btn:hover {
+            color: var(--accent);
+        }
+
+        .action-btn.liked {
+            color: var(--accent);
+        }
+
+        /* Single Post View Styles */
+        #single-post-view {
+            display: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-decoration: none;
+            margin-bottom: 3rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+
+        .single-post-content {
+            margin-bottom: 5rem;
+        }
+
+        .single-post-content .post-body {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            user-select: none; /* Right-click protection requirement */
+        }
+
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            font-family: var(--font-sans);
+        }
+
+        .nav-btn {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .nav-btn:hover {
+            color: var(--accent);
+        }
+
+        .nav-btn.disabled {
+            color: var(--muted);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Admin Panel Styles */
+        #admin-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(250, 249, 247, 0.98);
+            z-index: 1000;
+            padding: 4rem 1.5rem;
+            overflow-y: auto;
+        }
+
+        .admin-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .admin-form {
+            background: #fff;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: var(--muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            background: var(--bg);
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .admin-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .admin-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .admin-btn.secondary {
+            background: var(--muted);
+        }
+
+        .admin-post-list {
+            margin-top: 4rem;
+        }
+
+        .admin-post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .delete-btn {
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Auth Overlay */
+        #auth-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-box {
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        #toast.show {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 2rem 1rem;
+            }
+
+            .post-title {
+                font-size: 1.25rem;
+            }
+
+            .post-body {
+                font-size: 1rem;
+            }
+
+            .post-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem;
+                border: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1><a href="microblog.html">Aditya's Microthots</a></h1>
+    </header>
+
+    <main>
+        <div id="feed-view">
+            <div id="posts-container">
+                <!-- Posts will be injected here -->
+            </div>
+        </div>
+
+        <div id="single-post-view">
+            <a href="#" class="back-link" onclick="app.showFeed(event)">← Back to all posts</a>
+            <article id="single-post-content" class="single-post-content">
+                <!-- Single post content will be injected here -->
+            </article>
+            <nav class="post-navigation">
+                <a href="#" id="prev-btn" class="nav-btn">← Previous</a>
+                <a href="#" id="random-btn" class="nav-btn">Random</a>
+                <a href="#" id="next-btn" class="nav-btn">Next →</a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Admin Overlay -->
+    <div id="admin-overlay">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2>Admin Panel</h2>
+                <button class="admin-btn secondary" onclick="app.logout()">Logout</button>
+            </div>
+
+            <div class="admin-form">
+                <div class="form-group">
+                    <label for="post-title">Title (Optional)</label>
+                    <input type="text" id="post-title" placeholder="Enter title...">
+                </div>
+                <div class="form-group">
+                    <label for="post-body">Body (HTML allowed)</label>
+                    <textarea id="post-body" placeholder="Write something..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-date">Date</label>
+                    <input type="date" id="post-date">
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="admin-btn" onclick="app.publishPost()">Publish Post</button>
+                    <button class="admin-btn secondary" onclick="app.exportPosts()">Export JSON</button>
+                </div>
+            </div>
+
+            <div class="admin-post-list">
+                <h3>Manage Posts</h3>
+                <div id="admin-posts-container">
+                    <!-- Admin post list will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Overlay -->
+    <div id="auth-overlay" style="display: none;">
+        <div class="auth-box">
+            <h2 style="margin-bottom: 1.5rem; font-family: var(--font-sans); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Admin Access</h2>
+            <input type="password" id="admin-password" placeholder="Password">
+            <button class="admin-btn" style="width: 100%;" onclick="app.login()">Login</button>
+        </div>
+    </div>
+
+    <div id="toast">Link copied!</div>
+
+    <script>
+        // --- DATA ---
+        // PASTE YOUR EXPORTED POSTS HERE ↓
+        const HARDCODED_POSTS = [
+            {
+                "id": "post-005",
+                "title": "",
+                "body": "The most important work we do is often the work that feels invisible. It's the quiet persistence, the small choices made when no one is watching, and the commitment to a standard that only we can see. We live in an era of performance, but true craftsmanship is found in the silence between the applause.",
+                "date": "2024-03-20",
+                "likes": 12
+            },
+            {
+                "id": "post-004",
+                "title": "On Complexity",
+                "body": "We tend to overcomplicate things as a way to avoid the discomfort of simple truths. It is easier to build a complex system than it is to have a difficult conversation. It is easier to buy a new tool than it is to practice the fundamentals. Simplicity isn't just an aesthetic; it's a form of courage.",
+                "date": "2024-03-15",
+                "likes": 8
+            },
+            {
+                "id": "post-003",
+                "title": "",
+                "body": "The internet promised us connection, but often it delivers comparison. We see the highlight reels of thousands and wonder why our behind-the-scenes feels so messy. But the mess is where the life is. The mess is where the growth happens. Don't trade your reality for someone else's projection.",
+                "date": "2024-03-10",
+                "likes": 15
+            },
+            {
+                "id": "post-002",
+                "title": "",
+                "body": "Waiting for inspiration is a trap. Inspiration is a guest that only visits those who are already working. If you wait for the perfect moment, you'll spend your life in the waiting room. Pick up the pen, start the engine, open the blank page. The momentum creates the magic, not the other way around.",
+                "date": "2024-03-05",
+                "likes": 21
+            },
+            {
+                "id": "post-001",
+                "title": "The First Step",
+                "body": "Every journey begins with a single step, but we often forget that the first step is usually the most awkward. It's the one where we don't know what we're doing, where we might trip, and where we feel most exposed. Embrace the awkwardness. It's the price of admission for anything worth doing.",
+                "date": "2024-03-01",
+                "likes": 5
+            }
+        ];
+
+        // --- APP LOGIC ---
+        const app = {
+            posts: [],
+            currentPostId: null,
+            isAdmin: false,
+            // Default password 'aditya2024' hash
+            adminHash: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+
+            init: async () => {
+                app.loadPosts();
+                app.handleRouting();
+                app.checkAdminParam();
+                
+                window.addEventListener('popstate', app.handleRouting);
+                
+                // Pre-fill date in admin
+                document.getElementById('post-date').valueAsDate = new Date();
+            },
+
+            loadPosts: () => {
+                const localPosts = JSON.parse(localStorage.getItem('microblog_posts') || '[]');
+                const localLikes = JSON.parse(localStorage.getItem('microblog_likes') || '{}');
+                
+                // Merge and deduplicate
+                const allPosts = [...localPosts, ...HARDCODED_POSTS];
+                const uniquePosts = [];
+                const seenIds = new Set();
+                
+                allPosts.forEach(post => {
+                    if (!seenIds.has(post.id)) {
+                        seenIds.add(post.id);
+                        // Apply local likes if they exist
+                        if (localLikes[post.id]) {
+                            post.likes = localLikes[post.id].count;
+                            post.isLiked = localLikes[post.id].isLiked;
+                        }
+                        uniquePosts.push(post);
+                    }
+                });
+
+                // Sort by date descending
+                app.posts = uniquePosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            },
+
+            handleRouting: () => {
+                const hash = window.location.hash;
+                if (hash && hash.startsWith('#post-')) {
+                    const postId = hash.substring(1);
+                    app.showSinglePost(postId);
+                } else {
+                    app.renderFeed();
+                }
+            },
+
+            checkAdminParam: () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('admin') === 'true') {
+                    document.getElementById('auth-overlay').style.display = 'flex';
+                }
+            },
+
+            async hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            },
+
+            login: async () => {
+                const password = document.getElementById('admin-password').value;
+                const hash = await app.hashPassword(password);
+                
+                if (hash === app.adminHash) {
+                    app.isAdmin = true;
+                    document.getElementById('auth-overlay').style.display = 'none';
+                    document.getElementById('admin-overlay').style.display = 'block';
+                    app.renderAdminPosts();
+                } else {
+                    alert('Incorrect password');
+                }
+            },
+
+            logout: () => {
+                app.isAdmin = false;
+                document.getElementById('admin-overlay').style.display = 'none';
+                const url = new URL(window.location);
+                url.searchParams.delete('admin');
+                window.history.replaceState({}, '', url);
+            },
+
+            renderFeed: () => {
+                app.currentPostId = null;
+                document.getElementById('feed-view').style.display = 'block';
+                document.getElementById('single-post-view').style.display = 'none';
+                document.getElementById('site-header').style.display = 'block';
+
+                const container = document.getElementById('posts-container');
+                container.innerHTML = app.posts.map(post => `
+                    <article class="post-item" id="${post.id}">
+                        <span class="post-date">${app.formatDate(post.date)}</span>
+                        ${post.title ? `<h2 class="post-title"><a href="#${post.id}" onclick="app.showSinglePost('${post.id}', event)">${post.title}</a></h2>` : ''}
+                        <div class="post-body">${post.body}</div>
+                        <div class="post-actions">
+                            <button class="action-btn ${post.isLiked ? 'liked' : ''}" onclick="app.toggleLike('${post.id}')">
+                                <span>❤</span> <span id="likes-${post.id}">${post.likes || 0}</span>
+                            </button>
+                            <button class="action-btn" onclick="app.sharePost('${post.id}')">
+                                <span>Share</span>
+                            </button>
+                        </div>
+                    </article>
+                `).join('');
+            },
+
+            showSinglePost: (postId, event) => {
+                if (event) event.preventDefault();
+                
+                const post = app.posts.find(p => p.id === postId);
+                if (!post) return;
+
+                app.currentPostId = postId;
+                window.location.hash = postId;
+
+                document.getElementById('feed-view').style.display = 'none';
+                document.getElementById('single-post-view').style.display = 'block';
+                document.getElementById('site-header').style.display = 'none';
+
+                const container = document.getElementById('single-post-content');
+                container.innerHTML = `
+                    <span class="post-date">${app.formatDate(post.date)}</span>
+                    ${post.title ? `<h2 class="post-title" style="font-size: 2rem; margin-bottom: 2rem;">${post.title}</h2>` : ''}
+                    <div class="post-body" id="protected-content">${post.body}</div>
+                    <div class="post-actions" style="margin-top: 3rem;">
+                        <button class="action-btn ${post.isLiked ? 'liked' : ''}" onclick="app.toggleLike('${post.id}')">
+                            <span>❤</span> <span id="likes-single-${post.id}">${post.likes || 0}</span>
+                        </button>
+                        <button class="action-btn" onclick="app.sharePost('${post.id}')">
+                            <span>Share</span>
+                        </button>
+                    </div>
+                `;
+
+                // Right-click protection
+                const protectedContent = document.getElementById('protected-content');
+                protectedContent.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    app.showToast("Please link to this post rather than copying it.");
+                });
+
+                app.updateNavigation(postId);
+                window.scrollTo(0, 0);
+            },
+
+            showFeed: (event) => {
+                if (event) event.preventDefault();
+                window.location.hash = '';
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+                app.renderFeed();
+                window.scrollTo(0, 0);
+            },
+
+            updateNavigation: (postId) => {
+                const index = app.posts.findIndex(p => p.id === postId);
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const randomBtn = document.getElementById('random-btn');
+
+                // Previous (older)
+                if (index < app.posts.length - 1) {
+                    prevBtn.classList.remove('disabled');
+                    prevBtn.onclick = (e) => app.showSinglePost(app.posts[index + 1].id, e);
+                } else {
+                    prevBtn.classList.add('disabled');
+                }
+
+                // Next (newer)
+                if (index > 0) {
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.onclick = (e) => app.showSinglePost(app.posts[index - 1].id, e);
+                } else {
+                    nextBtn.classList.add('disabled');
+                }
+
+                // Random
+                randomBtn.onclick = (e) => {
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * app.posts.length);
+                    } while (randomIndex === index && app.posts.length > 1);
+                    app.showSinglePost(app.posts[randomIndex].id, e);
+                };
+            },
+
+            toggleLike: (postId) => {
+                const post = app.posts.find(p => p.id === postId);
+                if (!post) return;
+
+                if (post.isLiked) {
+                    post.likes--;
+                    post.isLiked = false;
+                } else {
+                    post.likes++;
+                    post.isLiked = true;
+                }
+
+                // Update UI
+                const likeCountEls = [
+                    document.getElementById(`likes-${postId}`),
+                    document.getElementById(`likes-single-${postId}`)
+                ];
+                likeCountEls.forEach(el => {
+                    if (el) el.innerText = post.likes;
+                });
+
+                const likeBtns = document.querySelectorAll(`button[onclick="app.toggleLike('${postId}')"]`);
+                likeBtns.forEach(btn => {
+                    if (post.isLiked) btn.classList.add('liked');
+                    else btn.classList.remove('liked');
+                });
+
+                // Persist likes
+                const localLikes = JSON.parse(localStorage.getItem('microblog_likes') || '{}');
+                localLikes[postId] = { count: post.likes, isLiked: post.isLiked };
+                localStorage.setItem('microblog_likes', JSON.stringify(localLikes));
+            },
+
+            sharePost: async (postId) => {
+                const url = `${window.location.origin}${window.location.pathname}#${postId}`;
+                const post = app.posts.find(p => p.id === postId);
+                
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: post.title || "Microblog Post",
+                            url: url
+                        });
+                    } catch (err) {
+                        console.error("Share failed:", err);
+                    }
+                } else {
+                    navigator.clipboard.writeText(url).then(() => {
+                        app.showToast("Link copied!");
+                    });
+                }
+            },
+
+            showToast: (message) => {
+                const toast = document.getElementById('toast');
+                toast.innerText = message;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            },
+
+            formatDate: (dateStr) => {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateStr).toLocaleDateString('en-US', options);
+            },
+
+            // Admin Functions
+            publishPost: () => {
+                const title = document.getElementById('post-title').value;
+                const body = document.getElementById('post-body').value;
+                const date = document.getElementById('post-date').value;
+
+                if (!body) {
+                    alert('Body is required');
+                    return;
+                }
+
+                const newPost = {
+                    id: `post-${Date.now()}`,
+                    title,
+                    body,
+                    date,
+                    likes: 0
+                };
+
+                const localPosts = JSON.parse(localStorage.getItem('microblog_posts') || '[]');
+                localPosts.unshift(newPost);
+                localStorage.setItem('microblog_posts', JSON.stringify(localPosts));
+
+                // Clear form
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-body').value = '';
+                
+                app.loadPosts();
+                app.renderAdminPosts();
+                app.renderFeed();
+                app.showToast("Post published!");
+            },
+
+            deletePost: (postId) => {
+                if (!confirm('Are you sure you want to delete this post?')) return;
+
+                // Check if it's a hardcoded post
+                if (HARDCODED_POSTS.some(p => p.id === postId)) {
+                    alert("This post is hardcoded in the HTML file. To delete it permanently, you must remove it from the HARDCODED_POSTS array in the source code.");
+                    return;
+                }
+
+                const localPosts = JSON.parse(localStorage.getItem('microblog_posts') || '[]');
+                const filtered = localPosts.filter(p => p.id !== postId);
+                localStorage.setItem('microblog_posts', JSON.stringify(filtered));
+
+                app.loadPosts();
+                app.renderAdminPosts();
+                app.renderFeed();
+            },
+
+            renderAdminPosts: () => {
+                const container = document.getElementById('admin-posts-container');
+                container.innerHTML = app.posts.map(post => `
+                    <div class="admin-post-item">
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--muted);">${post.date}</span>
+                            <div style="font-weight: 500;">${post.title || '(No title)'}</div>
+                        </div>
+                        <button class="delete-btn" onclick="app.deletePost('${post.id}')">Delete</button>
+                    </div>
+                `).join('');
+            },
+
+            exportPosts: () => {
+                // Export all posts without the 'isLiked' property
+                const exportData = app.posts.map(({ isLiked, ...rest }) => rest);
+                const json = JSON.stringify(exportData, null, 4);
+                navigator.clipboard.writeText(json).then(() => {
+                    app.showToast("JSON copied to clipboard!");
+                });
+            }
+        };
+
+        app.init();
+    </script>
+</body>
+</html>
