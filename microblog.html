@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microthots — Aditya</title>
+    <title>Microblog — Aditya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -383,7 +383,7 @@
 <body>
 
     <header id="site-header">
-        <h1><a href="microblog.html">Aditya's Microthots</a></h1>
+        <h1><a href="microblog.html">Aditya's Microblog</a></h1>
     </header>
 
     <main>
@@ -499,8 +499,9 @@
             posts: [],
             currentPostId: null,
             isAdmin: false,
-            // Default password 'aditya2024' hash
-            adminHash: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+            // Configuration
+            adminHash: "2a1d2c9cd16522ca43eec518c029aa80bb7ef3d552145e53b17e09ef36f148ee", // Hash for 'aditya2024'
+            secretKey: "aditya-secret-2024", // Change this to your own secret string!
 
             init: async () => {
                 app.loadPosts();
@@ -550,9 +551,26 @@
 
             checkAdminParam: () => {
                 const urlParams = new URLSearchParams(window.location.search);
+                
+                // Method 1: Secret Key (Recommended for GitHub Pages)
+                // Access via: microblog.html?key=aditya-secret-2024
+                if (urlParams.get('key') === app.secretKey) {
+                    app.enterAdmin();
+                    return;
+                }
+
+                // Method 2: Password Prompt
+                // Access via: microblog.html?admin=true
                 if (urlParams.get('admin') === 'true') {
                     document.getElementById('auth-overlay').style.display = 'flex';
                 }
+            },
+
+            enterAdmin: () => {
+                app.isAdmin = true;
+                document.getElementById('auth-overlay').style.display = 'none';
+                document.getElementById('admin-overlay').style.display = 'block';
+                app.renderAdminPosts();
             },
 
             async hashPassword(password) {
@@ -568,10 +586,7 @@
                 const hash = await app.hashPassword(password);
                 
                 if (hash === app.adminHash) {
-                    app.isAdmin = true;
-                    document.getElementById('auth-overlay').style.display = 'none';
-                    document.getElementById('admin-overlay').style.display = 'block';
-                    app.renderAdminPosts();
+                    app.enterAdmin();
                 } else {
                     alert('Incorrect password');
                 }
